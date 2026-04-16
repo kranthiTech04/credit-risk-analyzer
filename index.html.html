@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreditSense AI | Smart Risk Assessment</title>
+    <meta name="description" content="Predict whether a customer will pay their credit card bill or default based on financial history.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <span>CreditSense <strong>AI</strong></span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Assessments</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <header class="dashboard-header">
+            <h1>Credit Risk Assessment</h1>
+            <p>Enter the customer's financial details to generate an instant, AI-driven risk analysis.</p>
+        </header>
+
+        <div class="grid-container">
+            <!-- Left Column: Input Form -->
+            <section class="card form-section">
+                <h2>Customer Profile</h2>
+                <form id="assessment-form">
+                    <div class="form-group">
+                        <label for="monthly-income">Monthly Income ($)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <input type="number" id="monthly-income" placeholder="e.g. 5000" required min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="existing-debt">Existing Debts (Total $)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <input type="number" id="existing-debt" placeholder="e.g. 1500" required min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="late-payments">Late Payments (Past 12 months)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-calendar-xmark"></i>
+                            <input type="number" id="late-payments" placeholder="e.g. 1" required min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="credit-utilization">Credit Utilization (%)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-percent"></i>
+                            <input type="number" id="credit-utilization" placeholder="e.g. 30" required min="0" max="100">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="analyze-btn">
+                        <span>Analyze Risk</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Right Column: Results & History -->
+            <section class="results-section">
+                <!-- Result Card -->
+                <div class="card result-card empty" id="result-card">
+                    <div class="empty-state" id="empty-state">
+                        <div class="empty-icon"><i class="fa-solid fa-robot"></i></div>
+                        <h3>Awaiting Data</h3>
+                        <p>Submit the form to see the AI assessment here.</p>
+                    </div>
+                    
+                    <div class="result-content hidden" id="result-content">
+                        <div class="result-header">
+                            <h2>Assessment Result</h2>
+                            <div class="badge" id="risk-badge">Safe</div>
+                        </div>
+                        
+                        <div class="score-dial">
+                            <div class="score-circle" id="score-circle">
+                                <span id="risk-emoji">🟢</span>
+                            </div>
+                        </div>
+
+                        <div class="explanation-box" id="explanation-box">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <span class="metric-label">Debt-to-Income</span>
+                                <strong id="dti-display">--%</strong>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Late Payments</span>
+                                <strong id="late-display">--</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History List -->
+                <div class="card history-card">
+                    <div class="history-header">
+                        <h2>Assessment History</h2>
+                        <button class="btn-icon" id="clear-history" title="Clear History"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                    <div class="history-list" id="history-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
